@@ -1,0 +1,10 @@
+name = "backrubbit-push"
+main = "index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+# comma-separated origins allowed to call the worker
+ALLOWED_ORIGIN = "https://backrubbit.web.app,http://localhost:5173"
+VAPID_SUBJECT = "mailto:oabdrakhmanov@alumni.nu.edu.kz"
+VAPID_PUBLIC_KEY = "BKwFiIRQCrE3HESrynsASn6nyHaXsdtaMVVkI6vY9jlAKm5wJeXWTxnwc1ySGuqQLvc2Twiu0GKPaZ5ch_pTprY"
+# secret: npx wrangler secret put VAPID_PRIVATE_KEY

@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // No accounts. The doc id in src/config.js (COUPLE_ID) is the secret: get by id only, never list.
+    function ok(d) {
+      return d.get('coupons', 0) is int
+        && d.get('coupons', 0) >= 0 && d.get('coupons', 0) <= 99
+        && d.get('status', 'idle') in ['idle', 'requested', 'resting'];
+    }
+    match /couples/{cid} {
+      allow get: if true;
+      allow list: if false;
+      allow create, update: if ok(request.resource.data);
+      allow delete: if false;
+    }
+  }
+}
